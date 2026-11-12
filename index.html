@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="cs"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#10231c">
+<title>Začíná to na M.</title>
+<link rel="preconnect" href="https://script.google.com">
+<link rel="preconnect" href="https://script.googleusercontent.com">
+<style>html,body{margin:0;height:100%;background:#10231c;color:#f0a6c2;font-family:Georgia,serif}
+.l{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.l b{font-style:italic;font-weight:400;font-size:34px;text-align:center;padding:0 16px}
+.l i{width:34px;height:34px;border-radius:50%;border:3px solid rgba(240,166,194,.25);border-top-color:#f0a6c2;animation:r 1s linear infinite}
+.e{color:#ffb4b4;font:14px/1.5 sans-serif;max-width:420px;text-align:center;padding:0 16px}
+@keyframes r{to{transform:rotate(360deg)}}</style></head>
+<body><div class="l" id="l"><b>Začíná to na M.</b><i></i></div><script>
+(function(){
+var API="https://script.google.com/macros/s/AKfycbxRQYLLwoUgsXaS3XxUderoBNbWbg3mGze4-_SxeEtHv5185mmTyrnWG1CAMMY5L0M/exec", K="atelier_page_v1", c=null;
+try{c=localStorage.getItem(K)}catch(e){}
+function show(h){document.open();document.write(h);document.close();}
+if(c){ if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",function(){show(c)}); else show(c); }
+fetch(API,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({fn:"getPage",args:[]})})
+.then(function(r){return r.json()}).then(function(j){
+  if(!j.ok) throw new Error(j.error);
+  if(j.result===c) return;
+  try{localStorage.setItem(K,j.result)}catch(e){}
+  if(c) location.reload(); else show(j.result);
+}).catch(function(e){ if(c) return; var l=document.getElementById("l"); if(l) l.innerHTML=
+  "<b>Začíná to na M.</b><div class=e>Stránku se nepodařilo načíst. Zkuste to za chvíli znovu.<br><small>"+String(e.message||e)+"</small></div>"; });
+})();
+</script></body></html>
